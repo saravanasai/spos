@@ -26,7 +26,7 @@ Route::get('employee-login', [AuthController::class, 'employeeLogin'])->name('em
 
 
 
-Route::group(['middleware' => 'isAuthenticated', 'prefix' => '{branchCode}/dashboard'], function () {
+Route::group(['middleware' => 'isAuthenticated', 'prefix' => 'dashboard'], function () {
 
     //setting dashboard
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
@@ -34,7 +34,12 @@ Route::group(['middleware' => 'isAuthenticated', 'prefix' => '{branchCode}/dashb
     //setting route
     Route::group(['prefix' => 'settings', 'as' => 'setting.'], function () {
 
+        Route::get('employee-management', [SettingController::class, 'employeeManagementIndex'])->name('employee-management');
         Route::get('change-password', [SettingController::class, 'changePasswordIndex'])->name('change-password');
+
+
+
+
     });
 
     //logout route

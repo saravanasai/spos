@@ -8,15 +8,15 @@ class LogoutButton extends Component
 {
 
 
-    public $params;
+
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($params)
+    public function __construct()
     {
-        $this->params=$params;
+
     }
 
     /**

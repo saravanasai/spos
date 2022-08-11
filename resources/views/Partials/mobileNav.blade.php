@@ -13,7 +13,7 @@
             S-POS
         </a>
         <ul class="mt-6">
-            <x-navbar.nav-menu :route="'dashboard'" :params="[$branchCode]" menuText="Dashboard">
+            <x-navbar.nav-menu :route="'dashboard'"  menuText="Dashboard">
                 <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"
                     stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                     <path
@@ -23,7 +23,7 @@
             </x-navbar.nav-menu>
         </ul>
         <ul>
-            <x-navbar.nav-menu :route="'dashboard'" :params="[$branchCode]" menuText="Comments">
+            <x-navbar.nav-menu :route="'dashboard'"  menuText="Comments">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -58,7 +58,7 @@
                     aria-label="submenu">
                     <li
                         class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-                        <a class="w-full" href="{{route('setting.change-password',$branchCode)}}">Change Password</a>
+                        <a class="w-full" href="{{route('setting.change-password')}}">Change Password</a>
                     </li>
                 </ul>
                 </template>
@@ -67,7 +67,7 @@
         <div class="px-6 my-6">
             <div
             class="flex items-center justify-between w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
-            <x-auth.logout-button :params="[$branchCode]" />
+            <x-auth.logout-button  />
         </div>
         </div>
     </div>

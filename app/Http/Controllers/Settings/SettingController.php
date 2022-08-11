@@ -15,4 +15,9 @@ class SettingController extends Controller
 
     }
 
+    public function employeeManagementIndex()
+    {
+        return view('Setting.employeeManagement');
+    }
+
 }
