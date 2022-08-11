@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire\Auth;
 
-use App\Models\Branch\Branch;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
@@ -28,9 +27,7 @@ class LoginFormComponent extends Component
         //authentication process
         if(Auth::attempt(['email'=>$this->email,'password'=>$this->password]))
         {
-            $branch=Branch::first()->branch_code;
-
-            return redirect()->route('dashboard',$branch);
+            return redirect()->route('dashboard');
         }
 
         session()->flash('login-failed', 'Invalid Credentials');

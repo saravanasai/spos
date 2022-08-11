@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             "name"=>"Super Admin",
             "email"=>"admin@gmail.com",
             "password"=>Hash::make('12345'),
+            "current_branch"=>1
         ]);
 
         $this->call(BranchSeeder::class);

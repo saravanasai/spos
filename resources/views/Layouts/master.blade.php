@@ -9,8 +9,7 @@
     <link rel="stylesheet" href="{{ asset('dist/assets/css/tailwind.output.css') }}" />
     <script src="{{ asset('dist/assets/js/alpine-js.js') }}" defer></script>
     <script src="{{ asset('dist/assets/js/init-alpine.js') }}"></script>
-    <script src="{{ asset('css/app.css') }}"></script>
-    <script src="{{ asset('css/custom.css') }}"></script>
+    <link rel="stylesheet" href="{{ asset('css/custom.css') }}" />
     @livewireStyles
 </head>
 
@@ -29,10 +28,9 @@
                         @yield('master-tittle')
                     </h2>
                     <!-- Cards -->
-                    <div class="grid gap-6 mb-8 md:grid-cols-12 xl:grid-cols-12">
-                        <!-- Card -->
-                        <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
-                            @yield('content')
+                    @yield('content')
+
+
                         </div>
                     </div>
 

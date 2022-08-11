@@ -8,7 +8,6 @@ class NavMenu extends Component
 {
 
     public $route;
-    public $params;
     public $menuText;
 
     /**
@@ -16,10 +15,9 @@ class NavMenu extends Component
      *
      * @return void
      */
-    public function __construct($route,$params,$menuText)
+    public function __construct($route,$menuText)
     {
         $this->route=$route;
-        $this->params=$params;
         $this->menuText=$menuText;
     }
 
