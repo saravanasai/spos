@@ -40,7 +40,16 @@
     </div>
 
     <script src="{{ asset('dist/assets/js/axios.js') }}" defer></script>
+    <script src="{{ asset('dist/assets/js/jquery.js') }}" ></script>
     @livewireScripts
+    <script >
+        $(document).ready(function(){
+            window.livewire.on('alert_remove',()=>{
+                setTimeout(function(){ $(".alert").fadeOut('fast');
+                }, 3000); // 3 secs
+            });
+        });
+    </script>
 </body>
 
 </html>

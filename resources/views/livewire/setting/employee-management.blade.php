@@ -1,62 +1,54 @@
-@if (session()->has('password-changed'))
-    <x-alert.notification :bgColor="'purple'">
-        {{ session('password-changed') }}
-    </x-alert.notification>
-@endif
 <div>
+    @if (session()->has('employee-added'))
+        <x-alert.notification :bgColor="'green'">
+            {{ session('employee-added') }}
+        </x-alert.notification>
+    @endif
     <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
         <p class="flex justify-between text-sm text-gray-600 dark:text-gray-400">
             <label class="block text-sm">
                 <span class="text-gray-700 dark:text-gray-400">Name</span>
-                <input
-                    wire.model.debounce.500ms="name"
+                <input wire:model.debounce.500ms="name"
                     class="block  mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                     placeholder="Name">
             </label>
             <label class="block text-sm">
                 <span class="text-gray-700 dark:text-gray-400">Email</span>
-                <input
-                wire.model.debounce.500ms="email"
+                <input wire:model.debounce.500ms="email"
                     class="block  mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                     placeholder="admin@gmail.com">
             </label>
             <label class="block text-sm">
                 <span class="text-gray-700 dark:text-gray-400">Phone</span>
-                <input
-                    wire.model.debounce.500ms="phone"
-                    type="number"
+                <input wire:model.debounce.500ms="phone" type="number"
                     class="block  mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                     placeholder="9025807876">
             </label>
             <label class="block text-sm">
                 <span class="text-gray-700 dark:text-gray-400">Password</span>
-                <input
-                    wire.model.debounce.500ms="password"
-                    type="password"
+                <input wire:model.debounce.500ms="password" type="password"
                     class="block  mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                     placeholder="Password">
             </label>
         </p>
         <label class="block mt-5 text-sm">
             <span class="text-gray-700 dark:text-gray-400">
-               Employee Role
+                Employee Role
             </span>
-            <select
-            wire.model.debounce.500ms="role"
+            <select wire:model.debounce.500ms="role"
                 class="block w-1/4 mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
                 <option value="0">Choose role</option>
                 @foreach ($roles as $role)
-                <option value="{{$role->id}}">{{$role->role}}</option>
+                    <option value="{{ $role->id }}">{{ $role->role }}</option>
                 @endforeach
             </select>
         </label>
         <div class="flex justify-end">
-            <button
+            <button wire:click="addEmployee" type="button"
                 class="px-4 py-2 text-sm font-medium leading-2 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
                 Add Employee
             </button>
         </div>
-
     </div>
     <div class="mb-4">
         <div class="w-full overflow-x-auto">
@@ -97,14 +89,14 @@
                             </td>
                             <td class="px-4 py-3 text-xs">
                                 <span
-                                    class="px-2 py-1 font-semibold leading-tight text-green-700 bg-{{ $employee->active_status ? 'green' : 'red' }}-100 rounded-full dark:bg-green-700 dark:text-green-100">
+                                    class="px-2 py-1 font-semibold leading-tight text-{{ $employee->active_status ? 'green' : 'red' }}-700 bg-{{ $employee->active_status ? 'green' : 'red' }}-100 rounded-full dark:bg-green-700 dark:text-green-100">
                                     {{ $employee->active_status ? 'Active' : 'InActive' }}
                                 </span>
                             </td>
                             <td class="px-4 py-3 text-sm">
-                                <button
-                                    class="px-4 py-2 text-sm font-medium leading-2 text-white transition-colors duration-150 bg-red-600 border border-transparent rounded-lg active:bg-red-600 hover:bg-red-700 focus:outline-none focus:shadow-outline-red">
-                                    Disable
+                                <button wire:click="toggleActiveStatus({{ $employee->id }})" type="button"
+                                    class="px-4 py-2 text-sm font-medium leading-2 text-white transition-colors duration-150 bg-{{ $employee->active_status ? 'red' : 'green' }}-600 border border-transparent rounded-lg active:bg-red-600 hover:bg-red-700 focus:outline-none focus:shadow-outline-red">
+                                    {{ $employee->active_status ? 'Disable' : 'Active' }}
                                 </button>
                             </td>
                         </tr>

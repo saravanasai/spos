@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->call(BranchSeeder::class);
 
         //admin credentials seeder
         User::create([
@@ -24,7 +25,7 @@ class DatabaseSeeder extends Seeder
             "current_branch"=>1
         ]);
 
-        $this->call(BranchSeeder::class);
+
         $this->call(RoleSeeder::class);
         $this->call(PermissionSeeder::class);
         $this->call(RolesPermissionSeeder::class);

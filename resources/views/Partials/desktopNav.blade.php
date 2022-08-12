@@ -21,6 +21,7 @@
                         d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
                 </svg>
             </x-navbar.nav-menu>
+
             <li class="relative px-6 py-3">
                 <button
                     class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
@@ -48,13 +49,20 @@
                         class="p-2 mt-2 space-y-2 overflow-hidden text-sm font-medium text-gray-500 rounded-md shadow-inner bg-gray-50 dark:text-gray-400 dark:bg-gray-900"
                         aria-label="submenu">
             </li>
+            @if (auth('web')->user())
             <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
                 <a class="w-full" href="{{ route('setting.employee-management') }}">Employee Management</a>
             </li>
-
+            <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+                <a class="w-full" href="{{ route('setting.branch-management') }}">Branch Management</a>
+            </li>
             <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
                 <a class="w-full" href="{{ route('setting.change-password') }}">Change Password</a>
             </li>
+            @else
+
+            @endif
+
         </ul>
         </template>
         </li>
