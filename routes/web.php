@@ -35,6 +35,7 @@ Route::group(['middleware' => 'isAuthenticated', 'prefix' => 'dashboard'], funct
     Route::group(['prefix' => 'settings', 'as' => 'setting.'], function () {
 
         Route::get('employee-management', [SettingController::class, 'employeeManagementIndex'])->name('employee-management');
+        Route::get('branch-management', [SettingController::class, 'branchManagementIndex'])->name('branch-management');
         Route::get('change-password', [SettingController::class, 'changePasswordIndex'])->name('change-password');
 
 

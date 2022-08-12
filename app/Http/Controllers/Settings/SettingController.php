@@ -17,7 +17,13 @@ class SettingController extends Controller
 
     public function employeeManagementIndex()
     {
+
         return view('Setting.employeeManagement');
+    }
+
+    public function branchManagementIndex()
+    {
+        return view('Setting.branchManagment');
     }
 
 }
