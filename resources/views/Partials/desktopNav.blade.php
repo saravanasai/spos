@@ -14,11 +14,18 @@
             </x-navbar.nav-menu>
         </ul>
         <ul>
-            <x-navbar.nav-menu :route="'dashboard'" menuText="Comments">
+            <x-navbar.nav-menu :route="'pos.index'" menuText="Pos">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
+                        d="M15 9a2 2 0 10-4 0v5a2 2 0 01-2 2h6m-6-4h4m8 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+            </x-navbar.nav-menu>
+            <x-navbar.nav-menu :route="'management.product-management'" menuText="Products">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" />
                 </svg>
             </x-navbar.nav-menu>
 
@@ -50,17 +57,16 @@
                         aria-label="submenu">
             </li>
             @if (auth('web')->user())
-            <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-                <a class="w-full" href="{{ route('setting.employee-management') }}">Employee Management</a>
-            </li>
-            <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-                <a class="w-full" href="{{ route('setting.branch-management') }}">Branch Management</a>
-            </li>
-            <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-                <a class="w-full" href="{{ route('setting.change-password') }}">Change Password</a>
-            </li>
+                <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+                    <a class="w-full" href="{{ route('setting.employee-management') }}">Employee Management</a>
+                </li>
+                <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+                    <a class="w-full" href="{{ route('setting.branch-management') }}">Branch Management</a>
+                </li>
+                <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+                    <a class="w-full" href="{{ route('setting.change-password') }}">Change Password</a>
+                </li>
             @else
-
             @endif
 
         </ul>

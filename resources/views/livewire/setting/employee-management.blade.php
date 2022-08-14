@@ -31,18 +31,20 @@
                     placeholder="Password">
             </label>
         </p>
+        <p class="flex justify-between text-sm text-gray-600 dark:text-gray-400">
         <label class="block mt-5 text-sm">
             <span class="text-gray-700 dark:text-gray-400">
                 Employee Role
             </span>
             <select wire:model.debounce.500ms="role"
-                class="block w-1/4 mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
+                class="block  mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
                 <option value="0">Choose role</option>
                 @foreach ($roles as $role)
                     <option value="{{ $role->id }}">{{ $role->role }}</option>
                 @endforeach
             </select>
         </label>
+        </p>
         <div class="flex justify-end">
             <button wire:click="addEmployee" type="button"
                 class="px-4 py-2 text-sm font-medium leading-2 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
