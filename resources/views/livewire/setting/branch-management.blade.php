@@ -5,21 +5,21 @@
         </x-alert.notification>
     @endif
     <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
-        <p class="flex justify-between text-sm text-gray-600 dark:text-gray-400">
-            <label class="block text-sm">
+        <p class="flex justify-start text-sm text-gray-600 dark:text-gray-400">
+            <label class="block text-sm mx-2">
                 <span class="text-gray-700 dark:text-gray-400">Branch Name</span>
                 <input wire:model.debounce.500ms="branchName"
                     class="block  mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                     placeholder="Branch Name">
             </label>
-            <label class="block text-sm">
+            <label class="block text-sm mx-2">
                 <span class="text-gray-700 dark:text-gray-400">Branch Code</span>
                 <input wire:model.debounce.500ms="branchCode"
                     class="block  mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                     placeholder="Branch Code">
             </label>
         </p>
-        <div class="flex justify-end">
+        <div class="flex justify-end mt-2">
             <button wire:click="addBranch" type="button"
                 class="px-4 py-2 text-sm font-medium leading-2 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
                 Add Branch

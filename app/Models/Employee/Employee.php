@@ -12,6 +12,10 @@ class Employee extends Authenticatable
     use HasFactory;
 
 
+    public const MANAGER=1;
+    public const CASHIER=2;
+    public const BILLER=3;
+
     protected $with=['Role'];
 
     protected $table = 'employees';
