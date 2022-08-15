@@ -126,23 +126,41 @@
         </div>
         <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
             <div class="flex justify-start">
-                @php
-                    $summary = 0;
-                @endphp
-                <h4 class=" px-4 ml-3 py-3 text-lg font-bold ">Checkout :</h4>
-                @forelse ($currentBillProducts as $currentBill)
-                    @php
-                        $summary += $currentBill->total * $currentBill->order_product_quantity;
-                    @endphp
-                @empty
 
-                @endforelse
+                <h4 class=" px-4 ml-3 py-3 text-lg font-bold ">Checkout :</h4>
+
                 <p class="px-4 ml-3 py-3 font-bold text-lg">
-                   {{ $summary }}
+                 {{$totalAmount}}
                 </p>
             </div>
-
+            <div class="flex justify-around">
+                <div>
+                    <label class="block text-sm mx-2">
+                        <span class="text-gray-700 dark:text-gray-400">Amount Paid</span>
+                        <input wire:model.debounce.500ms="amountPaid"
+                            class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                            placeholder="Amount Paid">
+                    </label>
+                    <label class="block text-sm mx-2">
+                        <span class="text-gray-700 dark:text-gray-400">Balance</span>
+                        <input
+                        readonly
+                        value="{{$amountPaid=="" ? 0 : $amountPaid-$totalAmount}}"
+                            class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                            placeholder="Return Amount">
+                    </label>
+                </div>
+            </div>
+            <div class="mt-5 flex justify-around">
+                <button
+                {{$amountPaid<$totalAmount ? 'disabled' : ''}}
+                wire:click="pay"
+                class="px-3 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-{{$amountPaid>=$totalAmount ? 'purple' : 'red'}}-600 border border-transparent rounded-md active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+                    Pay
+                  </button>
+            </div>
         </div>
+
     </div>
 
 </div>

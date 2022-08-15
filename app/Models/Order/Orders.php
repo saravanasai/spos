@@ -13,6 +13,8 @@ class Orders extends Model
 
     protected $fillable = [
         'order_sum',
+        'amount_paid',
+        'branch_id',
         'order_status',
 
     ];

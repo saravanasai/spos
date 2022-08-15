@@ -16,7 +16,10 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('order_sum')->nullable()->default(null);
+            $table->bigInteger('amount_paid')->nullable()->default(null);
             $table->tinyInteger('order_status')->default(0)->comment('0 means open order 1 means closed');
+            $table->unsignedBigInteger('branch_id')->nullable()->default(null);
+            $table->foreign('branch_id')->references('id')->on('branches');
             $table->timestamps();
         });
     }
