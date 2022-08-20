@@ -9,33 +9,25 @@ use Illuminate\Support\Facades\Gate;
 class SettingController extends Controller
 {
 
+
+
+
     public function changePasswordIndex()
     {
-        if (!Gate::allows('can-access', auth('web')->user())) {
-            abort(403);
-        }
+        Gate::authorize('can-access');
         return view('Setting.changePassword');
     }
 
 
     public function employeeManagementIndex()
     {
-        if (!Gate::allows('can-access', auth('web')->user())) {
-            abort(403);
-        }
-
-
+        Gate::authorize('can-access');
         return view('Setting.employeeManagement');
     }
 
     public function branchManagementIndex()
     {
-
-        if (!Gate::allows('can-access', auth('web')->user())) {
-            abort(403);
-        }
-
-
+        Gate::authorize('can-access');
         return view('Setting.branchManagment');
     }
 }
