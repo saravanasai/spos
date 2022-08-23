@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Authentication\AuthController;
 use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\Orders\OrdersController;
 use App\Http\Controllers\Pos\PosController;
 use App\Http\Controllers\Products\ProductController;
 use App\Http\Controllers\Settings\SettingController;
@@ -41,12 +42,20 @@ Route::group(['middleware' => 'isAuthenticated', 'prefix' => 'dashboard'], funct
 
     });
 
-    //products management
+    //pos management
     Route::group(['prefix' => 'point-of-sale', 'as' => 'pos.'], function () {
 
         Route::get('index', [PosController::class, 'index'])->name('index');
 
     });
+
+    //orders management
+    Route::group(['prefix' => 'sales-orders', 'as' => 'order.'], function () {
+
+        Route::get('index', [OrdersController::class, 'index'])->name('index');
+
+    });
+
 
     //setting route
     Route::group(['prefix' => 'settings', 'as' => 'setting.'], function () {

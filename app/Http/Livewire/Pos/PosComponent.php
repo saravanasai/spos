@@ -5,14 +5,17 @@ namespace App\Http\Livewire\Pos;
 use App\Models\Order\Orders;
 use App\Models\OrderItems\OrderItems;
 use App\Models\Products\Products;
+use App\Traits\Orders\WithProduct;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithPagination;
+
 
 class PosComponent extends Component
 {
 
     use WithPagination;
+    use WithProduct;
 
     public $search;
     public $billNo;
@@ -28,14 +31,10 @@ class PosComponent extends Component
     public function mount()
     {
         $this->billNo = $this->getOrderNo();
-        $this->totalAmount = $this->totalBillAmount();
-        $this->currentBillProducts = $this->getCurrentBillProducts();
+
     }
 
-    public function totalBillAmount()
-    {
-        return OrderItems::where('order_id', $this->billNo)->sum(DB::raw('order_product_quantity * total'));
-    }
+
 
     public function getOrderNo()
     {
@@ -71,34 +70,9 @@ class PosComponent extends Component
         }
 
         $this->search = '';
-        $this->currentBillProducts = $this->getCurrentBillProducts();
-        $this->totalAmount = $this->totalBillAmount();
+
     }
 
-    public function increaseQuantity($id, $productId)
-    {
-        OrderItems::find($id)->increment('order_product_quantity', 1);
-        Products::find($productId)->decrement('product_quantity', 1);
-        $this->currentBillProducts = $this->getCurrentBillProducts();
-        $this->totalAmount = $this->totalBillAmount();
-    }
-
-    public function decreaseQuantity($id, $productId)
-    {
-        OrderItems::find($id)->decrement('order_product_quantity', 1);
-        Products::find($productId)->increment('product_quantity', 1);
-        $this->currentBillProducts = $this->getCurrentBillProducts();
-        $this->totalAmount = $this->totalBillAmount();
-    }
-
-    public function deleteOrderItems($id, $productId)
-    {
-        $item = OrderItems::find($id);
-        Products::find($productId)->increment('product_quantity', $item->order_product_quantity);
-        $item->delete();
-        $this->currentBillProducts = $this->getCurrentBillProducts();
-        $this->totalAmount = $this->totalBillAmount();
-    }
 
     public function pay()
     {
@@ -112,8 +86,6 @@ class PosComponent extends Component
 
         $this->billNo = null;
         $this->amountPaid = '';
-        $this->currentBillProducts = $this->getCurrentBillProducts();
-        $this->totalAmount = $this->totalBillAmount();
         $this->billNo = $this->getOrderNo();
     }
 
@@ -126,6 +98,8 @@ class PosComponent extends Component
 
     public function render()
     {
+        $this->currentBillProducts = $this->getCurrentBillProducts();
+        $this->totalAmount = $this->totalBillAmount($this->billNo);
 
         $query = Products::query();
 

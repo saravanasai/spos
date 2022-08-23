@@ -39,10 +39,26 @@ class AppServiceProvider extends ServiceProvider
             if (Employee::BILLER === $value) {
                 return true;
             }
-
-
-
         });
+
+        Blade::if('viewsales', function ($value) {
+
+
+            if (auth('web')->check()) {
+                return true;
+            }
+            if (Employee::MANAGER === $value) {
+
+                return true;
+            }
+            if (Employee::BILLER === $value) {
+                return true;
+            }
+            if (Employee::CASHIER === $value) {
+                return true;
+            }
+        });
+
 
         Blade::if('canviewproducts', function ($value) {
 
@@ -54,6 +70,5 @@ class AppServiceProvider extends ServiceProvider
             }
             return false;
         });
-
     }
 }
