@@ -17,6 +17,8 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('photo')->nullable()->default(null);
+            $table->unsignedBigInteger('role_id')->nullable()->default(null);
             $table->unsignedBigInteger('current_branch')->nullable();
             $table->foreign('current_branch')->references('id')->on('branches')->default(null);
             $table->timestamp('email_verified_at')->nullable();

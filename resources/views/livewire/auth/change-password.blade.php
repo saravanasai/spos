@@ -1,4 +1,4 @@
-<div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
+<div class="flex justify-between px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
     <div class="w-1/2">
         <h1 class="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
             Change password
@@ -39,4 +39,6 @@
             Update password
         </button>
     </div>
+
+    @livewire('profile.change-profile-picture-component')
 </div>

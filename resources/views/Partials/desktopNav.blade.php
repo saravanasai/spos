@@ -15,7 +15,7 @@
         </ul>
         <ul>
 
-            @viewpos(auth('employee')->user()->role_id)
+            @viewpos(auth('employee')->user())
                 <x-navbar.nav-menu :route="'pos.index'" menuText="Pos">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor" stroke-width="2">
@@ -25,7 +25,7 @@
                 </x-navbar.nav-menu>
             @endviewpos
 
-            @viewsales(auth('employee')->user()->role_id)
+            @viewsales(auth('employee')->user())
                 <x-navbar.nav-menu :route="'order.index'" menuText="Sales">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor" stroke-width="2">
@@ -35,7 +35,7 @@
                 </x-navbar.nav-menu>
             @endviewsales
 
-            @canviewproducts(auth('employee')->user()->role_id)
+            @canviewproducts(auth('employee')->user())
             <x-navbar.nav-menu :route="'management.product-management'" menuText="Products">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor" stroke-width="2">
