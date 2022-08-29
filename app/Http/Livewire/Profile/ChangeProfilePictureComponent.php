@@ -28,18 +28,22 @@ class ChangeProfilePictureComponent extends Component
     {
         $this->validate();
 
-        $avatar = $this->photo->getClientOriginalName();
+        $user = User::find(auth('web')->user()->id);
 
-        User::find(auth('web')->user()->id)->update([
-            'photo' => $avatar
-        ]);
+        $isUploaded=$user->addMedia($this->photo->getRealPath())
+        ->usingName($this->photo->getClientOriginalName())
+        ->preservingOriginal()
+        ->toMediaCollection('profile-images');
 
-        if ($this->photo->storeAs('photos', $avatar)) {
-
+        if($isUploaded)
+        {
             $this->imageUploaded = true;
 
             session()->flash('profile-image-changed', 'Profile Image Changed');
         }
+
+
+
     }
     public function render()
     {
